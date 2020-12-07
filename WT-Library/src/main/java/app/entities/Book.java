@@ -79,12 +79,7 @@ public class Book implements Serializable {
 
     @Override
     public String toString() {
-        return "Book{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", author='" + author + '\'' +
-                ", genre='" + genre + '\'' +
-                ", count=" + count +
-                '}';
+        return "Book{id=" + id + ", name='" + name + "', author='" + author +
+                "', genre='" + genre + "', count=" + count + '}';
     }
 }
