@@ -6,17 +6,17 @@ import app.model.dao.interfaces.IUserDAO;
 
 public class UserDAO implements IUserDAO {
     @Override
-    public void updateUser(final long userId, final User user){
-
-    }
-
-    @Override
     public void registerUser(final User user){
 
     }
 
     @Override
-    public User getUserById(final User user){
+    public void loginUser(User user) {
+
+    }
+
+    @Override
+    public User getUserById(int id) {
         return null;
     }
 }
