@@ -2,11 +2,12 @@ package app.model.dao.interfaces;
 
 import java.util.List;
 import app.entities.Record;
+import app.model.dao.exception.DAOException;
 
 public interface IRecordDAO {
-    void addRecord(Record record);
-    void deleteRecord(Record record);
-    void deleteRecordsByBook(Record record);
-    void updateRecord(Record record);
-    List<Record> getRecords();
+    void addRecord(Record record) throws DAOException;
+    void deleteRecord(Record record) throws DAOException;
+    void deleteRecordsByBook(Record record) throws DAOException;
+    void updateRecord(Record record) throws DAOException;
+    List<Record> getRecords() throws DAOException;
 }
