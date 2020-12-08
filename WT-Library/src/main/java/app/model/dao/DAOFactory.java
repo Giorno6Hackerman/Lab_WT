@@ -1,18 +1,18 @@
 package app.model.dao;
 
-import app.model.dao.interfaces.IBookDAO;
-import app.model.dao.interfaces.IRecordDAO;
-import app.model.dao.interfaces.IUserDAO;
+import app.model.dao.interfaces.BookDAO;
+import app.model.dao.interfaces.RecordDAO;
+import app.model.dao.interfaces.UserDAO;
 
 public class DAOFactory {
     private static final DAOFactory instance = new DAOFactory();
     private DAOFactory() {};
-    private final IBookDAO bookDAO = new BookDAO();
-    private final IUserDAO userDAO = new UserDAO();
-    private final IRecordDAO recordDAO = new RecordDAO();
+    private final BookDAO bookDAO = new BookDAOImpl();
+    private final UserDAO userDAO = new UserDAOImpl();
+    private final RecordDAO recordDAO = new RecordDAOImpl();
 
-    public DAOFactory getInstance() { return instance;}
-    public IBookDAO getBookDAO() { return bookDAO;}
-    public IUserDAO getUserDAO() { return userDAO;}
-    public IRecordDAO getRecordDAO() { return recordDAO;}
+    public static DAOFactory getInstance() { return instance;}
+    public BookDAO getBookDAO() { return bookDAO;}
+    public UserDAO getUserDAO() { return userDAO;}
+    public RecordDAO getRecordDAO() { return recordDAO;}
 }
