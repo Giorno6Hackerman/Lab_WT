@@ -19,12 +19,12 @@ public class UserDAOImpl implements UserDAO {
         try{
             connection = ConnectionPool.getInstance().getConnection();
 
-            var registerUserRequest = "INSERT INTO users (name, surname, login, passwordHash, role) VALUES (?, ?, ?, ?, ?)";
+            var registerUserRequest = "INSERT INTO users (name, surname, login, password, role) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement ps = connection.prepareStatement(registerUserRequest, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, user.getName());
             ps.setString(2, user.getSurname());
             ps.setString(3, user.getLogin());
-            ps.setString(4, user.getPasswordHash());
+            ps.setString(4, user.getPassword());
             ps.setInt(5, user.getRole().ordinal());
             ps.executeUpdate();
 
@@ -50,10 +50,10 @@ public class UserDAOImpl implements UserDAO {
         try{
             connection = ConnectionPool.getInstance().getConnection();
 
-            var loginUserRequest = "SELECT * FROM users WHERE login=? AND passwordHash=?";
+            var loginUserRequest = "SELECT * FROM users WHERE login=? AND password=?";
             PreparedStatement ps = connection.prepareStatement(loginUserRequest);
             ps.setString(1, user.getLogin());
-            ps.setString(2, user.getPasswordHash());
+            ps.setString(2, user.getPassword());
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 id = rs.getInt("id");
@@ -88,7 +88,7 @@ public class UserDAOImpl implements UserDAO {
                 user.setName(rs.getString("name"));
                 user.setSurname(rs.getString("surname"));
                 user.setLogin(rs.getString("login"));
-                user.setPasswordHash(rs.getString("passwordHash"));
+                user.setPassword(rs.getString("password"));
                 user.setRole(Role.values()[rs.getInt("role")]);
             }
         } catch(SQLException ex) {
@@ -118,7 +118,7 @@ public class UserDAOImpl implements UserDAO {
                 user.setName(rs.getString("name"));
                 user.setSurname(rs.getString("surname"));
                 user.setLogin(rs.getString("login"));
-                user.setPasswordHash(rs.getString("passwordHash"));
+                user.setPassword(rs.getString("password"));
                 user.setRole(Role.values()[rs.getInt("role")]);
             }
         } catch(SQLException ex) {
@@ -148,7 +148,7 @@ public class UserDAOImpl implements UserDAO {
                 user.setName(rs.getString("name"));
                 user.setSurname(rs.getString("surname"));
                 user.setLogin(rs.getString("login"));
-                user.setPasswordHash(rs.getString("passwordHash"));
+                user.setPassword(rs.getString("password"));
                 user.setRole(Role.values()[rs.getInt("role")]);
                 users.add(user);
             }

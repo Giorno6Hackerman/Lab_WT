@@ -8,18 +8,18 @@ public class User implements Serializable {
     private String name;
     private String surname;
     private String login;
-    private String passwordHash;
+    private String password;
     private Role role;
 
     public User(){
     }
 
-    public User(int id, String name, String surname, String login, String passwordHash, Role role){
+    public User(int id, String name, String surname, String login, String password, Role role){
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.login = login;
-        this.passwordHash = passwordHash;
+        this.password = password;
         this.role = role;
     }
 
@@ -55,12 +55,12 @@ public class User implements Serializable {
         this.login = login;
     }
 
-    public String getPasswordHash(){
-        return passwordHash;
+    public String getPassword(){
+        return password;
     }
 
-    public void PasswordHash(String passwordHash){
-        this.passwordHash = passwordHash;
+    public void setPassword(String password){
+        this.password = password;
     }
 
     public Role getRole(){
@@ -79,17 +79,17 @@ public class User implements Serializable {
             return false;
         User user = (User) o;
         return id == user.id && name.equals(user.name) && surname.equals(user.surname) && login.equals(user.login)
-                && passwordHash.equals(user.passwordHash) && role == user.role;
+                && password.equals(user.password) && role == user.role;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, surname, login, passwordHash, role);
+        return Objects.hash(id, name, surname, login, password, role);
     }
 
     @Override
     public String toString() {
         return "User{id=" + id + ", name='" + name + "', surname='" + surname +
-                "', login='" + login + "', passwordHash='" + passwordHash + "', role=" + role + '}';
+                "', login='" + login + "', password='" + password + "', role=" + role + '}';
     }
 }

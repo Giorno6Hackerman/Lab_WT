@@ -14,7 +14,7 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public User register(User user) throws ServiceException {
-        if (user.getLogin().equals("") || user.getPasswordHash().equals("") || user.getName().equals("") ||
+        if (user.getLogin().equals("") || user.getPassword().equals("") || user.getName().equals("") ||
                 user.getSurname().equals("")) {
             throw new ServiceException("These fields can't be empty");
         } else {
@@ -76,7 +76,7 @@ public class ClientServiceImpl implements ClientService {
             User comparedUser = users.stream()
                     .filter(u -> u.getLogin().equals(user.getLogin()))
                     .findFirst().orElse(null);
-            return (comparedUser == null) ? false : comparedUser.getPasswordHash().equals(user.getPasswordHash());
+            return (comparedUser == null) ? false : comparedUser.getPassword().equals(user.getPassword());
         } catch (DAOException ex) {
             throw new ServiceException(ex);
         }
