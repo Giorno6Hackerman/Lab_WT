@@ -15,6 +15,7 @@ public interface LibraryService {
     Book getBookById(String id) throws ServiceException;
     void addNewRecord(Record record) throws ServiceException;
     List<Record> getRecords() throws ServiceException;
+    List<Record> getUserRecords(User user) throws ServiceException;
     void deleteRecord(Record record) throws ServiceException;
     void updateRecord(Record record) throws ServiceException;
 }

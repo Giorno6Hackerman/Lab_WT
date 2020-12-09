@@ -4,6 +4,7 @@ import java.util.List;
 
 import app.entities.Book;
 import app.entities.Record;
+import app.entities.User;
 import app.model.dao.exception.DAOException;
 
 public interface RecordDAO {
@@ -12,4 +13,5 @@ public interface RecordDAO {
     void deleteRecordsByBook(Book book) throws DAOException;
     void updateRecord(Record record) throws DAOException;
     List<Record> getRecords() throws DAOException;
+    List<Record> getUserRecords(User user) throws DAOException;
 }

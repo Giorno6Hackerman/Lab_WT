@@ -2,5 +2,6 @@ package app.entities;
 
 public enum OrderType {
     LibraryRoom,
-    SeasonTicket
+    SeasonTicket,
+    Processing
 }

@@ -121,4 +121,33 @@ public class RecordDAOImpl implements RecordDAO {
         }
         return records;
     }
+
+    @Override
+    public List<Record> getUserRecords(User user) throws DAOException {
+        List<Record> records = new ArrayList<>();
+        Connection connection = null;
+        try {
+            connection = ConnectionPool.getInstance().getConnection();
+
+            var getUserRecordsRequest = "SELECT * FROM records WHERE user_id=?";
+            PreparedStatement ps = connection.prepareStatement(getUserRecordsRequest);
+            ps.setInt(1, user.getId());
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Record record = new Record();
+                Book book = DAOFactory.getInstance().getBookDAO().getBookById(rs.getInt("book_id"));
+                user = DAOFactory.getInstance().getUserDAO().getUserByLogin(rs.getString("user_id"));
+                record.setBook(book);
+                record.setUser(user);
+                record.setType(OrderType.values()[rs.getInt("order_type")]);
+                records.add(record);
+            }
+        } catch (SQLException ex) {
+            throw new DAOException(ex);
+        } finally {
+            ConnectionPool.getInstance().addConnection(connection);
+        }
+        return records;
+    }
 }

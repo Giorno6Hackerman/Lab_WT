@@ -2,6 +2,7 @@ package app.services;
 
 import app.entities.Book;
 import app.entities.Record;
+import app.entities.User;
 import app.model.dao.DAOFactory;
 import app.model.dao.exception.DAOException;
 import app.model.dao.interfaces.BookDAO;
@@ -98,6 +99,16 @@ public class LibraryServiceImpl implements LibraryService {
             throw new ServiceException(ex);
         }
     }
+
+    @Override
+    public List<Record> getUserRecords(User user) throws ServiceException {
+        try {
+            return recordDao.getUserRecords(user);
+        } catch (DAOException ex) {
+            throw new ServiceException(ex);
+        }
+    }
+
 
     @Override
     public void deleteRecord(Record record) throws ServiceException {
